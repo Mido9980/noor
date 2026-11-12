@@ -38,6 +38,11 @@ AY.forEach(function (a, i) {
 });
 function pageJuz(pg) { var a = AY[PAGES[pg][0]]; return a ? a[4] : 1; }
 function pageSurah(pg) { var a = AY[PAGES[pg][0]]; return a ? a[0] : 1; }
+function pageSurahs(pg) {
+  var seen = {}, list = [];
+  (PAGES[pg] || []).forEach(function (i) { var s = AY[i][0]; if (!seen[s]) { seen[s] = 1; list.push(s); } });
+  return list;
+}
 function surahName(n) { return M.surahs[n - 1] ? M.surahs[n - 1].ar : ''; }
 function trName(n) { var N = window.QTN && window.QTN[state.tr]; return (N && N[n - 1]) ? N[n - 1] : (M.surahs[n - 1] ? M.surahs[n - 1].en : ''); }
 
@@ -186,7 +191,8 @@ function renderRead(anim) {
   var wrap = document.querySelector('.reader-wrap');
   var sFirst = pageSurah(pg), jz = pageJuz(pg);
 
-  $('#rSurah').textContent = 'سُورَةُ ' + surahName(sFirst);
+  var onPage = pageSurahs(pg);
+  $('#rSurah').textContent = onPage.map(function (s) { return 'سُورَةُ ' + surahName(s); }).join(' · ');
   $('#rSub').textContent = t('juz_of') + ' ' + num(jz) + ' · ' + t('page_of') + ' ' + num(pg) + ' ' + t('of') + ' ' + num(M.pages);
   $('#rRange').value = pg;
   $('#rNum').textContent = num(pg) + ' / ' + num(M.pages);
@@ -547,7 +553,7 @@ applyTheme();
 applyI18n();
 show('home');
 document.body.classList.add('ready');
-if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker && navigator.serviceWorker.register) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('sw.js').catch(function () {});
   });
