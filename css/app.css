@@ -51,7 +51,7 @@ body[data-view="read"] .tabs{display:none}
   position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
   padding:calc(env(safe-area-inset-top) + 12px) 16px 12px;
   background:linear-gradient(180deg,var(--bg) 65%,transparent);
-  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
 }
 .brand{display:flex;align-items:center;gap:9px}
 .brand-mark{color:var(--gold);font-size:19px}
@@ -126,7 +126,7 @@ body[data-view="read"] .tabs{display:none}
 /* ---------- reader ---------- */
 .rhead{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:8px;
   padding:calc(env(safe-area-inset-top) + 10px) 12px 10px;
-  background:linear-gradient(180deg,var(--bg) 70%,transparent);backdrop-filter:blur(8px)}
+  background:linear-gradient(180deg,var(--bg) 70%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .rtitle{flex:1;text-align:center;min-width:0}
 .rt-surah{font-family:"Amiri",serif;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rt-sub{font-size:10.5px;color:var(--muted);margin-top:1px}
@@ -165,7 +165,7 @@ body[data-view="read"] .tabs{display:none}
 
 .rfoot{position:sticky;bottom:0;z-index:15;display:flex;align-items:center;gap:10px;
   padding:10px 12px calc(10px + env(safe-area-inset-bottom));
-  background:linear-gradient(0deg,var(--bg) 65%,transparent);backdrop-filter:blur(8px)}
+  background:linear-gradient(0deg,var(--bg) 65%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .nav-btn{width:44px;height:44px;flex:none;border-radius:14px;border:1px solid var(--line);background:var(--paper);
   color:var(--gold);font-size:20px;cursor:pointer;line-height:1;display:grid;place-items:center}
 .nav-btn:disabled{opacity:.35}
@@ -228,7 +228,8 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border:2px solid var(
 /* ---------- tabs ---------- */
 .tabs{position:fixed;bottom:0;left:0;right:0;z-index:30;display:flex;justify-content:space-around;
   max-width:760px;margin:0 auto;padding:8px 6px calc(8px + env(safe-area-inset-bottom));
-  background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(14px);
+  background:var(--bg);background:color-mix(in srgb,var(--bg) 92%,transparent);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
   border-top:1px solid var(--line)}
 .tab{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;
   color:var(--muted);font-size:9.5px;cursor:pointer;padding:4px 8px;font-family:inherit;flex:1}
