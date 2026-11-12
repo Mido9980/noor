@@ -107,6 +107,7 @@ function renderHome() {
   renderSurahList($('#surahList'), '');
 }
 
+function ayahLabel(c) { if (state.lang === 'ar') return c > 10 ? 'آيات' : 'آية'; var w = t('ayah_word'); return c > 10 ? w + 's' : w; }
 function renderSurahList(host, filter) {
   if (!host) return;
   var L = I18[state.lang] || I18.ar;
@@ -121,7 +122,7 @@ function renderSurahList(host, filter) {
         '<span class="snum">' + num(s.n) + '</span>' +
         '<span class="smain">' +
           '<span class="sname">سُورَةُ ' + nm + '</span>' +
-          '<span class="smeta">' + (state.lang !== 'ar' ? en + ' · ' : '') + num(s.c) + ' ' + (state.lang === 'ar' ? 'آية' : (I18[state.lang] || I18.ar).ayah_word) + ' · ' + (s.type === 'M' ? t('medinan') : t('meccan')) + ' · ' + t('page_of') + ' ' + num(s.pg) + '</span>' +
+          '<span class="smeta">' + (state.lang !== 'ar' ? en + ' · ' : '') + num(s.c) + ' ' + ayahLabel(s.c) + ' · ' + (s.type === 'M' ? t('medinan') : t('meccan')) + ' · ' + t('page_of') + ' ' + num(s.pg) + '</span>' +
         '</span>' +
         '<span class="sarrow">›</span>' +
       '</button>');
