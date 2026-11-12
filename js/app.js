@@ -220,7 +220,6 @@ function renderRead(anim) {
   if (anim) { void host.offsetWidth; host.classList.add(anim > 0 ? 'flip-l' : 'flip-r'); }
   if (wrap) wrap.scrollTop = 0;
 
-  document.documentElement.setAttribute('data-dbg', state.mode + '|' + state.tr + '|' + (window.QT ? Object.keys(window.QT).join(',') : 'none') + '|' + idxs.length);
   // bookmark button state
   var firstBm = idxs.some(function (i) { return isBm(AY[i][0], AY[i][1]); });
   $('#rBm').classList.toggle('on', firstBm);
@@ -266,6 +265,11 @@ function ayahModeHTML(idxs, trLang) {
       if (x) tr = '<div class="ayah-tr" dir="' + (RTL.indexOf(trLang) >= 0 ? 'rtl' : 'ltr') + '">' + esc(x) + '</div>';
     }
     var bm = isBm(sn, an) ? ' tap' : '';
+    if (an === 1) {
+      out += bandHTML(sn);
+      var sm = M.surahs[sn - 1];
+      if (sm && sm.bism && sn !== 1) out += '<div class="bism">' + M.bism + '</div>';
+    }
     out += '<div class="ayah' + bm + '" data-s="' + sn + '" data-a="' + an + '" data-p="' + a[3] + '">' +
       '<span class="ayah-no">' + num(sn) + ':' + num(an) + '</span>' +
       '<div class="ayah-txt">' + a[2] + ' <span class="am">' + num(an) + '</span></div>' + tr + '</div>';
@@ -538,7 +542,6 @@ document.addEventListener('keydown', function (e) {
   else if (e.key === 'Escape') show('home');
 });
 
-window.addEventListener('error', function(e){ document.title = 'ERR: ' + (e.message||''); });
 // boot
 applyTheme();
 applyI18n();
