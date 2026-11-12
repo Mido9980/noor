@@ -1,0 +1,19 @@
+{
+  "name": "نور — القرآن الكريم",
+  "short_name": "نور",
+  "description": "المصحف الشريف كاملاً بالخط العثماني: 604 صفحة، ترجمات متعددة، بحث ومحفوظات، يعمل بدون إنترنت.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1422",
+  "theme_color": "#0a1422",
+  "categories": ["books", "education", "lifestyle"],
+  "icons": [
+    { "src": "icons/i192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/i512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

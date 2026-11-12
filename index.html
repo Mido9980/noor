@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0c1626">
+<title>نور · القرآن الكريم</title>
+<meta name="description" content="نور — المصحف الشريف كاملاً بالخط العثماني، صفحات المصحف، ترجمة بعدة لغات، ويعمل بدون إنترنت.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body class="theme-night" data-view="home">
+
+<div class="app">
+
+  <!-- ============ HOME ============ -->
+  <section class="view view-home" id="vHome">
+    <header class="topbar" id="homeHead">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">❁</span>
+        <span class="brand-name" data-i18n="app">نور</span>
+      </div>
+      <div class="top-actions">
+        <button class="ic" id="btnLangHome" title="language">🌐</button>
+        <button class="ic" id="btnThemeHome" title="theme">◐</button>
+      </div>
+    </header>
+
+    <div class="scroll" id="homeScroll">
+      <div class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-inner">
+          <div class="hero-eyebrow" data-i18n="tagline">القرآن الكريم · يعمل بدون إنترنت</div>
+          <h1 class="hero-title">نور</h1>
+          <div class="hero-sub" data-i18n="hero_sub">صفحات المصحف الشريف بين يديك</div>
+          <div class="hero-stats">
+            <div><b>114</b><span data-i18n="surahs">سورة</span></div>
+            <div><b>604</b><span data-i18n="page_word">صفحة</span></div>
+            <div><b>10</b><span data-i18n="languages">لغات</span></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="continue" id="btnContinue">
+        <div class="continue-l">
+          <div class="cl-title" data-i18n="continue_reading">متابعة القراءة</div>
+          <div class="cl-sub" id="contSub">—</div>
+        </div>
+        <div class="continue-r">
+          <svg class="ring" viewBox="0 0 44 44" aria-hidden="true">
+            <circle cx="22" cy="22" r="18" class="ring-bg"/>
+            <circle cx="22" cy="22" r="18" class="ring-fg" id="ringFg"/>
+          </svg>
+          <span class="ring-txt" id="ringTxt">0%</span>
+        </div>
+      </button>
+
+      <div class="tiles">
+        <button class="tile" data-go="index"><span class="tile-ic">☰</span><span data-i18n="index">الفهرس</span></button>
+        <button class="tile" data-go="juz"><span class="tile-ic">۞</span><span data-i18n="juzs">الأجزاء</span></button>
+        <button class="tile" data-go="saved"><span class="tile-ic">🔖</span><span data-i18n="bookmarks">المحفوظات</span></button>
+        <button class="tile" data-go="search"><span class="tile-ic">⌕</span><span data-i18n="search">بحث</span></button>
+      </div>
+
+      <div class="sec-head">
+        <h2 data-i18n="surahs">سور القرآن</h2>
+        <button class="mini" data-go="search" id="btnSearchMini" data-i18n="search">بحث</button>
+      </div>
+      <div class="surah-list" id="surahList"></div>
+      <div class="foot-note" data-i18n="offline_note">كل شيء يعمل بدون إنترنت بعد أول فتح · أضِفه لشاشتك الرئيسية</div>
+    </div>
+  </section>
+
+  <!-- ============ READ ============ -->
+  <section class="view view-read" id="vRead">
+    <header class="rhead">
+      <button class="ic" id="rBack" aria-label="back">‹</button>
+      <div class="rtitle">
+        <div class="rt-surah" id="rSurah">—</div>
+        <div class="rt-sub" id="rSub">—</div>
+      </div>
+      <button class="ic" id="rTrBtn" title="translation">文</button>
+      <button class="ic" id="rBm" title="bookmark">🔖</button>
+    </header>
+
+    <div class="reader-wrap">
+      <div class="reader" id="reader"></div>
+    </div>
+
+    <footer class="rfoot">
+      <button class="nav-btn" id="rPrev" aria-label="previous">›</button>
+      <div class="rbar">
+        <input type="range" id="rRange" min="1" max="604" value="1">
+        <div class="rnum" id="rNum">—</div>
+      </div>
+      <button class="nav-btn" id="rNext" aria-label="next">‹</button>
+    </footer>
+  </section>
+
+  <!-- ============ INDEX ============ -->
+  <section class="view view-list" id="vIndex">
+    <header class="topbar">
+      <div class="brand"><span class="brand-name" data-i18n="index">الفهرس</span></div>
+      <div class="top-actions"><button class="ic" data-go="home">✕</button></div>
+    </header>
+    <div class="scroll">
+      <div class="searchbar"><input id="idxSearch" type="search" placeholder="ابحث عن سورة…" autocomplete="off"></div>
+      <div class="surah-list" id="surahList2"></div>
+    </div>
+  </section>
+
+  <!-- ============ JUZ ============ -->
+  <section class="view view-list" id="vJuz">
+    <header class="topbar">
+      <div class="brand"><span class="brand-name" data-i18n="juzs">الأجزاء</span></div>
+      <div class="top-actions"><button class="ic" data-go="home">✕</button></div>
+    </header>
+    <div class="scroll"><div class="juz-grid" id="juzGrid"></div></div>
+  </section>
+
+  <!-- ============ SAVED ============ -->
+  <section class="view view-list" id="vSaved">
+    <header class="topbar">
+      <div class="brand"><span class="brand-name" data-i18n="bookmarks">المحفوظات</span></div>
+      <div class="top-actions"><button class="ic" data-go="home">✕</button></div>
+    </header>
+    <div class="scroll"><div class="saved-list" id="savedList"></div></div>
+  </section>
+
+  <!-- ============ SEARCH ============ -->
+  <section class="view view-list" id="vSearch">
+    <header class="topbar">
+      <div class="brand"><span class="brand-name" data-i18n="search">بحث</span></div>
+      <div class="top-actions"><button class="ic" data-go="home">✕</button></div>
+    </header>
+    <div class="scroll">
+      <div class="searchbar"><input id="srch" type="search" placeholder="اكتب كلمة…" autocomplete="off"></div>
+      <div class="srch-hint" id="srchHint" data-i18n="search_hint">اكتب كلمتين على الأقل للبحث في النص والترجمة.</div>
+      <div class="srch-res" id="srchRes"></div>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="view view-list" id="vSettings">
+    <header class="topbar">
+      <div class="brand"><span class="brand-name" data-i18n="settings">الإعدادات</span></div>
+      <div class="top-actions"><button class="ic" data-go="home">✕</button></div>
+    </header>
+    <div class="scroll">
+      <div class="card">
+        <div class="card-h" data-i18n="theme">المظهر</div>
+        <div class="chips" id="themeChips">
+          <button class="chip" data-theme="day" data-i18n="theme_day">نهاري</button>
+          <button class="chip" data-theme="sepia" data-i18n="theme_sepia">ورقي</button>
+          <button class="chip" data-theme="night" data-i18n="theme_night">ليلي</button>
+          <button class="chip" data-theme="emerald" data-i18n="theme_emerald">زمردي</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-h" data-i18n="reading">القراءة</div>
+        <div class="row"><span data-i18n="font_size">حجم الخط</span>
+          <input type="range" id="fsRange" min="22" max="48" step="1">
+        </div>
+        <div class="row"><span data-i18n="mode">طريقة العرض</span>
+          <div class="seg" id="modeSeg">
+            <button class="seg-b" data-mode="page" data-i18n="mode_page">صفحة مصحف</button>
+            <button class="seg-b" data-mode="ayah" data-i18n="mode_ayah">آية + ترجمة</button>
+          </div>
+        </div>
+        <div class="row"><span data-i18n="font">الخط</span>
+          <select id="fontSel">
+            <option value="amiri">Amiri</option>
+            <option value="naskh">Naskh</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-h" data-i18n="language">اللغة</div>
+        <div class="row"><span data-i18n="ui_lang">لغة الواجهة</span><select id="uiLangSel"></select></div>
+        <div class="row"><span data-i18n="translation">الترجمة</span><select id="trLangSel"></select></div>
+      </div>
+
+      <div class="card">
+        <div class="card-h" data-i18n="khatma">الختمة</div>
+        <div class="row"><span data-i18n="khatma_progress">التقدم</span><b id="khatmaPct">0%</b></div>
+        <button class="btn-ghost" id="resetKhatma" data-i18n="reset_khatma">تصفير الختمة</button>
+      </div>
+
+      <div class="card">
+        <div class="card-h" data-i18n="about">عن التطبيق</div>
+        <p class="about" data-i18n="about_text">نور — مصحف رقمي بالخط العثماني، صفحات كاملة، وترجمات متعددة، يعمل بدون إنترنت.</p>
+        <p class="about dim">EASY CODE · v1.0</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- bottom tabs -->
+  <nav class="tabs" id="tabs">
+    <button class="tab" data-go="home"><span>❁</span><em data-i18n="tab_read">المصحف</em></button>
+    <button class="tab" data-go="index"><span>☰</span><em data-i18n="tab_index">الفهرس</em></button>
+    <button class="tab" data-go="search"><span>⌕</span><em data-i18n="tab_search">بحث</em></button>
+    <button class="tab" data-go="saved"><span>🔖</span><em data-i18n="tab_saved">محفوظات</em></button>
+    <button class="tab" data-go="settings"><span>⚙</span><em data-i18n="tab_settings">إعدادات</em></button>
+  </nav>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="data/quran.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
