@@ -1,5 +1,5 @@
 /* EASY NOOR — offline service worker */
-const CACHE = 'noor-v1';
+const CACHE = 'noor-v2';
 const CORE = [
   './', './index.html', './css/app.css', './js/i18n.js', './js/app.js',
   './data/quran.js', './amiri.ttf', './manifest.webmanifest',

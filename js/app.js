@@ -220,6 +220,7 @@ function renderRead(anim) {
   if (anim) { void host.offsetWidth; host.classList.add(anim > 0 ? 'flip-l' : 'flip-r'); }
   if (wrap) wrap.scrollTop = 0;
 
+  document.documentElement.setAttribute('data-dbg', state.mode + '|' + state.tr + '|' + (window.QT ? Object.keys(window.QT).join(',') : 'none') + '|' + idxs.length);
   // bookmark button state
   var firstBm = idxs.some(function (i) { return isBm(AY[i][0], AY[i][1]); });
   $('#rBm').classList.toggle('on', firstBm);
@@ -537,6 +538,7 @@ document.addEventListener('keydown', function (e) {
   else if (e.key === 'Escape') show('home');
 });
 
+window.addEventListener('error', function(e){ document.title = 'ERR: ' + (e.message||''); });
 // boot
 applyTheme();
 applyI18n();
